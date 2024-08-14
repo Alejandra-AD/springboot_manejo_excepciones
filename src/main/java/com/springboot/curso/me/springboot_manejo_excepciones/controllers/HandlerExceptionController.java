@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -48,6 +49,21 @@ public class HandlerExceptionController {
         error.put("date", new Date());
         error.put("message", exception.getMessage());
         error.put("error", "Valor númerico invalido");
+        error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+        return error;
+
+
+    }
+
+    @ExceptionHandler({NullPointerException.class,HttpMessageNotWritableException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map <String,Object> userNotFoundException (NumberFormatException exception){
+        
+        Map <String,Object> error = new HashMap();
+        error.put("date", new Date());
+        error.put("message", exception.getMessage());
+        error.put("error", "El ususario no existe");
         error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 
         return error;

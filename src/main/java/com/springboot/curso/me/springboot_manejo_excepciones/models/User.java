@@ -5,6 +5,7 @@ public class User {
     private Long id;
     private String name;
     private String lastname;
+    private String role;
 
 
     //contructor methods
@@ -18,7 +19,6 @@ public class User {
         this.name = name;
         this.lastname = lastname;
     }
-
 
 
     //getters and setters
@@ -40,6 +40,16 @@ public class User {
     }
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     
