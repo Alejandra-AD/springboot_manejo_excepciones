@@ -2,6 +2,7 @@ package com.springboot.curso.me.springboot_manejo_excepciones.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,10 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public User findById(Long id) {
+    public Optional<User> findById(Long id) {
+        
+        return users.stream().filter(u->u.getId().equals(id)).findFirst();
 
-        return users.stream().filter(u->u.getId().equals(id)).findFirst().orElseThrow(()->new UserNotFoundException("Usuario no encontrado"));
 
     }
 

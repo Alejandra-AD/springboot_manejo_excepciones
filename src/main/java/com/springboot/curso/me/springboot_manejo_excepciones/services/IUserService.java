@@ -9,7 +9,7 @@ public interface IUserService {
 
     public List <User> findAll();
 
-    public User findById(Long id);
+    public Optional<User> findById(Long id);
     
     
 

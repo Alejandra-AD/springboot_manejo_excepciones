@@ -1,5 +1,7 @@
 package com.springboot.curso.me.springboot_manejo_excepciones.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +35,14 @@ public class AppController {
 
     @GetMapping("/show/{id}")
     public User showUser(@PathVariable Long id){
-        User user = service.findById(id);
+
+        User user = service.findById(id)
+        .orElseThrow(() -> new UserNotFoundException("El usuario con ID " + id + " no fue encontrado."));
+       
         System.out.println(user.getName());
         return user;
+
+        
 
     }
 
