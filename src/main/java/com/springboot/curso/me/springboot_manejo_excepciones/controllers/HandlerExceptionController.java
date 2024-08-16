@@ -58,7 +58,7 @@ public class HandlerExceptionController {
 
     @ExceptionHandler({NullPointerException.class,HttpMessageNotWritableException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Map <String,Object> userNotFoundException (NumberFormatException exception){
+    public Map <String,Object> userNotFoundException (NullPointerException exception){
         
         Map <String,Object> error = new HashMap();
         error.put("date", new Date());
